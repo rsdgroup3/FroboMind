@@ -1,0 +1,19 @@
+<package>
+  <description brief="fmProcessing">
+
+     fmProcessing
+
+  </description>
+  <author>Søren Hundevadt Nielsen</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/fmProcessing</url>
+  <depend package="fmMsgs"/>
+  <depend package="fmCSP"/>
+  <depend package="sensor_msgs"/>
+  <depend package="nav_msgs"/>
+  <depend package="visualization_msgs"/>
+  <depend package="tf"/>
+</package>
+
+

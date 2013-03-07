@@ -1,0 +1,16 @@
+<launch>
+<include file="$(find fmCore)/launch/armadillo/armadillo-sensors.launch"/>
+<include file="$(find fmCore)/launch/armadillo/armadillo-actuators.launch"/>
+<include file="$(find fmCore)/launch/armadillo/armadillo-tf.launch"/>
+<include file="$(find fmCore)/launch/armadillo/armadillo-hmi.launch"/>
+
+
+
+  <node pkg="fmDecisionMakers" name="navigate_in_row_simple" type="navigate_in_row_simple.py">
+  </node>
+  
+<node pkg="fmExtractors" name="odom_imu" type="simple_imu_odom">
+</node>
+  
+
+</launch>

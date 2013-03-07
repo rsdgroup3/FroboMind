@@ -1,0 +1,27 @@
+<package>
+  <description brief="fmExtraction">
+
+     fmExtraction
+
+  </description>
+  <author>Søren Hundevadt Nielsen</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/fmExtraction</url>
+
+  <depend package="geometry_msgs"/>
+  <depend package="tf"/>
+
+  <depend package="fmMsgs"/>
+
+  <depend package="sensor_msgs"/>
+  <depend package="nav_msgs"/>
+  <depend package="laser_geometry"/>
+  <depend package="laser_filters"/>
+  <depend package="pcl"/>
+  <depend package="visualization_msgs"/>
+  <depend package="opencv2"/>
+  <depend package="dynamic_reconfigure"/>
+</package>
+
+

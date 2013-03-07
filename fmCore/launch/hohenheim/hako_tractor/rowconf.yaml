@@ -1,0 +1,4 @@
+{box_lim_x: 5, box_lim_y: 3.5, headland_box_lim_y: 3, headland_box_max_x: 2.5,
+  headland_box_min_x: 1.0, inliers_epsilon: 0.7, laser_scan_max_distance: 7.0, minimum_inliers: 0.93,
+  ransac_maximum_distance_fit: 7, ransac_minimum_distance_fit: 2,
+  ransac_n: 400}

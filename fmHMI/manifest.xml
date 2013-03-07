@@ -1,0 +1,22 @@
+<package>
+  <description brief="fmHMI">
+
+     fmHMI
+
+  </description>
+  <author>RoboUser</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/fmHMI</url>
+  <depend package="roscpp"/>
+  <depend package="fmMsgs"/>
+
+  <depend package="geometry_msgs"/>
+  <depend package="sensor_msgs"/>
+  <depend package="tf"/>
+  <depend package="wiimote"/>
+  <depend package="std_msgs"/>
+
+</package>
+
+

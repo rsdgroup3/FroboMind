@@ -1,0 +1,13 @@
+<launch>
+
+    <arg name="sim" default="false"></arg>
+    <arg name="bluetooth_mac"></arg>
+
+    <include file="$(find fmCore)/launch/sdu/frobit/frobit-base.launch">
+        <arg name="sim" value="$(arg sim)"></arg>
+        <arg name="bluetooth_mac" value="$(arg bluetooth_mac)"></arg>
+    </include>
+    
+    <include file="$(find fmCore)/launch/sdu/frobit/frobit-teleop-wii.launch"/>
+    
+</launch>

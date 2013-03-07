@@ -1,0 +1,26 @@
+<package>
+  <description brief="fmDecisionMaking">
+
+     fmDecisionMaking
+
+  </description>
+  <author>Søren Hundevadt Nielsen</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/fmDecisionMaking</url>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="sensor_msgs"/>
+  <depend package="fmMsgs"/>
+  <depend package="fmExecutors"/>
+  <depend package="fmImplements"/>
+  <depend package="tf"/>
+  <depend package="nav_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="actionlib"/>
+  <depend package="smach"/>
+  <depend package="smach_ros"/>
+  <depend package="fmTools"/>
+</package>
+
+
