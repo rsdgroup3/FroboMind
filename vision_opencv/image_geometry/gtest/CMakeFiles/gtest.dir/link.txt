@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC    -shared -Wl,-soname,libgtest.so -o libgtest.so CMakeFiles/gtest.dir/src/gtest-all.cc.o -L/home/rsd/groovy_workspace/FroboMind-Fuerte/vision_opencv/image_geometry/gtest/src -lpthread -Wl,-rpath,/home/rsd/groovy_workspace/FroboMind-Fuerte/vision_opencv/image_geometry/gtest/src 

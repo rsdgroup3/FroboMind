@@ -1,0 +1,45 @@
+<launch>
+	<group ns="Serials">
+		<node pkg="fmCSP" name="PLC_serial" type="serial_string" output="screen" >
+			<param name="device" value="/dev/ttyUSB0" /> fmCSP
+			<param name="baudrate" value="19200" />
+			<param name="publisher_topic"  value = "plc_S0_rx_msg" />
+			<param name="subscriber_topic" value = "plc_S0_tx_msg" />
+		</node>
+
+		<node pkg="fmCSP" name="robot_serial" type="serial_string" output="screen" >
+			<param name="device" value="/dev/ttyUSB1" /> 
+			<param name="baudrate" value="115200" />
+			<param name="publisher_topic" value = "robo_S0_rx_msg" />
+			<param name="subscriber_topic" value = "robo_S0_tx_msg" />
+			<param name="termination_character" value = "10" />
+		</node>
+
+	</group>
+
+	<group ns="Robot">
+		<node pkg="Robot" name="joint_act" type="joint_act" output="screen" >
+			<param name="publisher_topic" value = "/Serials/robo_S0_tx_msg" />
+			<param name="subscriber_topic" value = "joint_configuration" />
+			<param name="mst_vel" value = "255" />
+			<param name="update_frequency" value="100" />
+		</node>	
+		
+		<node pkg="Robot" name="inv_kin" type="inv_kin"  >
+			<param name="publisher_topic" value = "joint_configuration" />
+			<param name="subscriber_topic" value = "robot_xyz" />
+			<param name="update_frequency" value="1000" />
+		</node>
+		
+		<node pkg="Robot" name="read_position" type="read_position"  >
+			<param name="publisher_topic" value = "position" />
+			<param name="subscriber_topic" value = "/Serials/robo_S0_rx_msg" />
+			<param name="update_frequency" value="500" />
+		</node>
+	
+	</group>
+	
+
+	
+</launch>
+

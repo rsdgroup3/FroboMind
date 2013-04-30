@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/bosch-ros-pkg/!svn/ver/1080/trunk/stacks/bosch_drivers/bma180/msg
+END
+bma180meas.msg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/bosch-ros-pkg/!svn/ver/1080/trunk/stacks/bosch_drivers/bma180/msg/bma180meas.msg
+END
+bma180err.msg
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/bosch-ros-pkg/!svn/ver/129/trunk/stacks/bosch_drivers/bma180/msg/bma180err.msg
+END

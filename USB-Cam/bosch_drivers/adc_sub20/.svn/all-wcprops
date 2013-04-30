@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/bosch-ros-pkg/!svn/ver/1132/trunk/stacks/bosch_drivers/adc_sub20
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/bosch-ros-pkg/!svn/ver/933/trunk/stacks/bosch_drivers/adc_sub20/CMakeLists.txt
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/bosch-ros-pkg/!svn/ver/933/trunk/stacks/bosch_drivers/adc_sub20/Makefile
+END
+manifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/bosch-ros-pkg/!svn/ver/1132/trunk/stacks/bosch_drivers/adc_sub20/manifest.xml
+END
+mainpage.dox
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/bosch-ros-pkg/!svn/ver/933/trunk/stacks/bosch_drivers/adc_sub20/mainpage.dox
+END

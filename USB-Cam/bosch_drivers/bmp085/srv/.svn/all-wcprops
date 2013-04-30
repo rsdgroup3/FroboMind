@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/bosch-ros-pkg/!svn/ver/1315/trunk/stacks/bosch_drivers/bmp085/srv
+END
+weather_forcast.srv
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/bosch-ros-pkg/!svn/ver/1315/trunk/stacks/bosch_drivers/bmp085/srv/weather_forcast.srv
+END
+measure.srv
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/bosch-ros-pkg/!svn/ver/1315/trunk/stacks/bosch_drivers/bmp085/srv/measure.srv
+END

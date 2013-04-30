@@ -44,6 +44,7 @@ include CMakeFiles/ROSBUILD_genmsg_cpp.dir/progress.make
 
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/rtq.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/engine_rpm.h
+CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/xyz_r_t.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/adc.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/gpgga.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/accelerometer.h
@@ -53,6 +54,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/lidar_safety_zone.
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/steering_angle_cmd.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/magnetometer.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/gyroscope.h
+CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/positions.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/row.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/gps_state.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/rtq_command.h
@@ -60,6 +62,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/serial.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/rtq_lamp_command.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/encoder.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/motor_status.h
+CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/joint_conf.h
 CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 
 ../msg_gen/cpp/include/fmMsgs/rtq.h: ../msg/rtq.msg
@@ -80,12 +83,21 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/engine_rpm.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/engine_rpm.msg
 
+../msg_gen/cpp/include/fmMsgs/xyz_r_t.h: ../msg/xyz_r_t.msg
+../msg_gen/cpp/include/fmMsgs/xyz_r_t.h: /opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py
+../msg_gen/cpp/include/fmMsgs/xyz_r_t.h: /opt/ros/groovy/lib/roslib/gendeps
+../msg_gen/cpp/include/fmMsgs/xyz_r_t.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
+../msg_gen/cpp/include/fmMsgs/xyz_r_t.h: ../manifest.xml
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/xyz_r_t.h"
+	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/xyz_r_t.msg
+
 ../msg_gen/cpp/include/fmMsgs/adc.h: ../msg/adc.msg
 ../msg_gen/cpp/include/fmMsgs/adc.h: /opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py
 ../msg_gen/cpp/include/fmMsgs/adc.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/adc.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/adc.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/adc.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/adc.msg
 
@@ -94,7 +106,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/gpgga.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/gpgga.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/gpgga.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/gpgga.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/gpgga.msg
 
@@ -103,7 +115,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/accelerometer.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/accelerometer.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/accelerometer.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/accelerometer.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/accelerometer.msg
 
@@ -112,7 +124,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/claas_row_cam.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/claas_row_cam.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/claas_row_cam.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/claas_row_cam.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/claas_row_cam.msg
 
@@ -121,7 +133,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/nmea.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/nmea.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/nmea.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/nmea.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/nmea.msg
 
@@ -130,7 +142,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/lidar_safety_zone.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/lidar_safety_zone.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/lidar_safety_zone.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/lidar_safety_zone.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/lidar_safety_zone.msg
 
@@ -139,7 +151,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/steering_angle_cmd.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/steering_angle_cmd.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/steering_angle_cmd.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_10)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/steering_angle_cmd.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/steering_angle_cmd.msg
 
@@ -148,7 +160,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/magnetometer.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/magnetometer.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/magnetometer.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/magnetometer.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/magnetometer.msg
 
@@ -157,16 +169,25 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/gyroscope.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/gyroscope.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/gyroscope.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_12)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/gyroscope.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/gyroscope.msg
+
+../msg_gen/cpp/include/fmMsgs/positions.h: ../msg/positions.msg
+../msg_gen/cpp/include/fmMsgs/positions.h: /opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py
+../msg_gen/cpp/include/fmMsgs/positions.h: /opt/ros/groovy/lib/roslib/gendeps
+../msg_gen/cpp/include/fmMsgs/positions.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
+../msg_gen/cpp/include/fmMsgs/positions.h: ../manifest.xml
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_13)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/positions.h"
+	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/positions.msg
 
 ../msg_gen/cpp/include/fmMsgs/row.h: ../msg/row.msg
 ../msg_gen/cpp/include/fmMsgs/row.h: /opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py
 ../msg_gen/cpp/include/fmMsgs/row.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/row.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/row.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_12)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_14)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/row.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/row.msg
 
@@ -175,7 +196,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/gps_state.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/gps_state.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/gps_state.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_13)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_15)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/gps_state.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/gps_state.msg
 
@@ -184,7 +205,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/rtq_command.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/rtq_command.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/rtq_command.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_14)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_16)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/rtq_command.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/rtq_command.msg
 
@@ -193,7 +214,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/serial.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/serial.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/serial.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_15)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/serial.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/serial.msg
 
@@ -202,7 +223,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/rtq_lamp_command.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/rtq_lamp_command.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/rtq_lamp_command.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_16)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_18)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/rtq_lamp_command.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/rtq_lamp_command.msg
 
@@ -211,7 +232,7 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/encoder.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/encoder.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/encoder.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_17)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_19)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/encoder.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/encoder.msg
 
@@ -220,22 +241,32 @@ CMakeFiles/ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ../msg_gen/cpp/include/fmMsgs/motor_status.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/motor_status.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/motor_status.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_18)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_20)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/motor_status.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/motor_status.msg
+
+../msg_gen/cpp/include/fmMsgs/joint_conf.h: ../msg/joint_conf.msg
+../msg_gen/cpp/include/fmMsgs/joint_conf.h: /opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py
+../msg_gen/cpp/include/fmMsgs/joint_conf.h: /opt/ros/groovy/lib/roslib/gendeps
+../msg_gen/cpp/include/fmMsgs/joint_conf.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
+../msg_gen/cpp/include/fmMsgs/joint_conf.h: ../manifest.xml
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_21)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/joint_conf.h"
+	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/joint_conf.msg
 
 ../msg_gen/cpp/include/fmMsgs/can.h: ../msg/can.msg
 ../msg_gen/cpp/include/fmMsgs/can.h: /opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py
 ../msg_gen/cpp/include/fmMsgs/can.h: /opt/ros/groovy/lib/roslib/gendeps
 ../msg_gen/cpp/include/fmMsgs/can.h: /opt/ros/groovy/share/std_msgs/msg/Header.msg
 ../msg_gen/cpp/include/fmMsgs/can.h: ../manifest.xml
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_19)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/build/CMakeFiles $(CMAKE_PROGRESS_22)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating ../msg_gen/cpp/include/fmMsgs/can.h"
 	/opt/ros/groovy/share/roscpp/rosbuild/scripts/genmsg_cpp.py /home/rsd/groovy_workspace/FroboMind-Fuerte/fmMsgs/msg/can.msg
 
 ROSBUILD_genmsg_cpp: CMakeFiles/ROSBUILD_genmsg_cpp
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/rtq.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/engine_rpm.h
+ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/xyz_r_t.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/adc.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/gpgga.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/accelerometer.h
@@ -245,6 +276,7 @@ ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/lidar_safety_zone.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/steering_angle_cmd.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/magnetometer.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/gyroscope.h
+ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/positions.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/row.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/gps_state.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/rtq_command.h
@@ -252,6 +284,7 @@ ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/serial.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/rtq_lamp_command.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/encoder.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/motor_status.h
+ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/joint_conf.h
 ROSBUILD_genmsg_cpp: ../msg_gen/cpp/include/fmMsgs/can.h
 ROSBUILD_genmsg_cpp: CMakeFiles/ROSBUILD_genmsg_cpp.dir/build.make
 .PHONY : ROSBUILD_genmsg_cpp

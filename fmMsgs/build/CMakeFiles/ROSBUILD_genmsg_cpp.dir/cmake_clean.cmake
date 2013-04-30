@@ -4,6 +4,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/ROSBUILD_genmsg_cpp"
   "../msg_gen/cpp/include/fmMsgs/rtq.h"
   "../msg_gen/cpp/include/fmMsgs/engine_rpm.h"
+  "../msg_gen/cpp/include/fmMsgs/xyz_r_t.h"
   "../msg_gen/cpp/include/fmMsgs/adc.h"
   "../msg_gen/cpp/include/fmMsgs/gpgga.h"
   "../msg_gen/cpp/include/fmMsgs/accelerometer.h"
@@ -13,6 +14,7 @@ FILE(REMOVE_RECURSE
   "../msg_gen/cpp/include/fmMsgs/steering_angle_cmd.h"
   "../msg_gen/cpp/include/fmMsgs/magnetometer.h"
   "../msg_gen/cpp/include/fmMsgs/gyroscope.h"
+  "../msg_gen/cpp/include/fmMsgs/positions.h"
   "../msg_gen/cpp/include/fmMsgs/row.h"
   "../msg_gen/cpp/include/fmMsgs/gps_state.h"
   "../msg_gen/cpp/include/fmMsgs/rtq_command.h"
@@ -20,6 +22,7 @@ FILE(REMOVE_RECURSE
   "../msg_gen/cpp/include/fmMsgs/rtq_lamp_command.h"
   "../msg_gen/cpp/include/fmMsgs/encoder.h"
   "../msg_gen/cpp/include/fmMsgs/motor_status.h"
+  "../msg_gen/cpp/include/fmMsgs/joint_conf.h"
   "../msg_gen/cpp/include/fmMsgs/can.h"
 )
 

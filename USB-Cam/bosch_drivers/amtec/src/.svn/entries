@@ -1,0 +1,77 @@
+10
+
+dir
+1410
+https://bosch-ros-pkg.svn.sourceforge.net/svnroot/bosch-ros-pkg/trunk/stacks/bosch_drivers/amtec/src
+https://bosch-ros-pkg.svn.sourceforge.net/svnroot/bosch-ros-pkg
+
+
+
+2011-05-04T20:22:19.881399Z
+630
+pitzer
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+ce6fef4e-bbd6-4365-98d3-a31b88922953
+
+test_amtec
+dir
+
+amtec
+dir
+
+sweep_amtec
+dir
+
+CMakeLists.txt
+file
+
+
+
+
+2013-03-21T08:48:07.413762Z
+f54e637fc4cd782c8095192477e0025b
+2009-12-16T01:22:18.884822Z
+80
+duhadway-bosch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+114
+
+amtec_node
+dir
+
+libamtec
+dir
+

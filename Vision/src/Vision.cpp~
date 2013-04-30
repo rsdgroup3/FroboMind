@@ -1,0 +1,636 @@
+#include <opencv2/opencv.hpp>
+#include <numeric>
+#include <opencv/cv.h>
+#include "ros/ros.h"
+using namespace cv;
+
+#define toRad 0.017453293
+#define Red 1
+#define Yellow 2
+#define Blue 3
+#define halfbrick 15
+#define gripperwidth 30
+#define gripperlength 28
+#define border 110
+#define border2 630
+
+
+class Brick {
+
+public:
+
+	int color;
+	double angle;
+	Point center, grip;
+	int lastupdate;
+	RotatedRect rec;
+	bool griprot;
+
+	Brick (RotatedRect rect, int clr, int time)
+	{
+		//set color
+		color=clr;
+		//set center
+		center.x=rect.center.x; center.y=rect.center.y;
+		//get angle
+		Point2f vert[4];
+		rect.points(vert);
+		float d1=(vert[0].x-vert[1].x)*(vert[0].x-vert[1].x)+(vert[0].y-vert[1].y)*(vert[0].y-vert[1].y);
+		float d2=(vert[1].x-vert[2].x)*(vert[1].x-vert[2].x)+(vert[1].y-vert[2].y)*(vert[1].y-vert[2].y);
+		int i=0;
+		if (d1>d2) i=1;
+		int j=i+1;
+		if (vert[i].x>vert[j].x) {j=i; i=i+1;}
+		if ((vert[i].x-vert[j].x))
+			angle=atan((vert[j].y-vert[i].y)/(vert[i].x-vert[j].x))/toRad;
+		else angle=90;
+
+		//normalise blue angle
+		if (clr==Blue && angle<0) angle=angle+90;
+
+		//std::cout<<angle<<std::endl;
+		//get grip
+		grip=Point(-1,-1);
+		//set timestamp
+		lastupdate=time;
+		//set rectange
+		rec=rect;
+		//set if grip is rotated from main angle
+		griprot=false;
+	}
+
+	void drawBrick (Mat &img)
+	{
+		Point2f vert[4];
+	    rec.points(vert);
+	    line(img,vert[0],vert[1],Scalar(255,255,0),2);
+	    line(img,vert[1],vert[2],Scalar(255,255,0),2);
+	    line(img,vert[2],vert[3],Scalar(255,255,0),2);
+	    line(img,vert[3],vert[0],Scalar(255,255,0),2);
+	}
+
+	void checkGrip(const Mat & rezB, const Mat & rezY, const Mat & rezR, Mat & img )
+	{
+		if (checkThisGrip(rezB, rezY,rezR,center,angle,img )) grip=center;
+		else
+			if (color==Blue)
+				{if (checkThisGrip(rezB, rezY,rezR,center,angle-90,img ))
+				{grip=center;
+				 griprot=true;}}
+			else
+			{Point c2;
+				if (color==Red)
+					c2=getPoint(center,angle,halfbrick);
+				else
+					c2=getPoint(center,angle,2*halfbrick);
+				if (checkThisGrip(rezB, rezY,rezR,c2,angle,img))
+						grip=c2;
+				else
+				{
+					if (color==Red)
+						c2=getPoint(center,angle+180,halfbrick);
+					else
+						c2=getPoint(center,angle+180,2*halfbrick);
+					if (checkThisGrip(rezB, rezY,rezR,c2,angle+180,img))
+											grip=c2;
+				}
+
+			}
+		}
+
+private:
+	bool checkThisGrip(const Mat & rezB, const Mat & rezY, const Mat & rezR, Point center, double angle, Mat &img )
+	{
+		Point upper = getPoint(center,angle,halfbrick);
+	    //line(img,center,upper, Scalar(255,0,0));
+		Point upperL = getPoint (upper,angle+90,gripperwidth);
+		Point upperR = getPoint (upper,angle-90,gripperwidth);
+		Point pL, pR;
+		for (int i=0;i<gripperlength;i++)
+		{
+			pL=getPoint (upperL,angle+180,i);
+			pR=getPoint (upperR,angle+180,i);
+			if (pL.x>=0 && pL.x<img.cols && pL.y>=0 && pL.y<img.rows)
+			if (rezB.at<uchar>(pL)!=0 || rezY.at<uchar>(pL)!=0 || rezR.at<uchar>(pL)!=0)
+				return(false);
+			if (pR.x>=0 && pR.x<img.cols && pR.y>=0 && pR.y<img.rows)
+			if (rezB.at<uchar>(pR)!=0 || rezY.at<uchar>(pR)!=0 || rezR.at<uchar>(pR)!=0)
+				return(false);
+				}
+		line(img,upperR,pR, Scalar(0,255,0),3);
+		line(img,upperL,pL, Scalar(0,255,0),3);
+		return(true);
+	}
+
+	Point getPoint(Point pin, double ang, double d)
+	{
+		pin.x=pin.x+d*sin(ang*toRad);
+		pin.y=pin.y+d*cos(ang*toRad);
+		return(pin);
+	}
+};
+
+class BricksList{
+	vector<Brick> List;
+    double speed;
+	vector<double> spd;
+
+	static const double spdangle=0.03;
+public:
+
+	void addToList(vector<Brick> in)
+	{
+	double epsPos=10;
+	double epsAng=5;
+
+	vector<int> candidates;
+
+	for (int i=0; i<in.size(); i++)
+		{
+		candidates.clear();
+		for (int j=0; j<List.size(); j++)
+				if (List[j].color==in[i].color && List[j].center.x>0 && List[j].center.x+epsPos>=in[i].center.x && List[j].lastupdate!=in[i].lastupdate)
+					if (fabs(in[i].angle-List[j].angle)<=epsAng)
+						if (getDistLine(List[j].center, in[i].center)<=epsPos)
+							candidates.push_back(j);
+		if (candidates.size()==0)
+			List.push_back(in[i]);
+		else
+			if (candidates.size()==1)
+				{
+				double dst=sqrt(pow(List[candidates[0]].center.x-in[i].center.x,2)+pow(List[candidates[0]].center.y-in[i].center.y,2));
+				dst=dst/(List[candidates[0]].lastupdate-in[i].lastupdate);
+				spd.push_back(dst);
+				List[candidates[0]]=in[i];
+				}
+			else
+			{
+				double min=INT_MAX; int minidx=0;
+				for(int j=0; j<candidates.size(); j++)
+				{
+					Point2f EstPos=estimatePos(candidates[j], in[i].lastupdate, List[candidates[j]].center);
+					double dist = (EstPos.x-in[i].center.x)*(EstPos.x-in[i].center.x)+(EstPos.y-in[i].center.y)*(EstPos.y-in[i].center.y);
+					if (dist<min)
+					{
+						min=dist;
+						minidx=j;
+					}
+				}
+
+				double dst=sqrt(pow(List[candidates[minidx]].center.x-in[i].center.x,2)+pow(List[candidates[minidx]].center.y-in[i].center.y,2));
+				dst=dst/(List[candidates[minidx]].lastupdate-in[i].lastupdate);
+				spd.push_back(dst);
+				List[candidates[minidx]]=in[i];
+			}
+		}
+	//update the speed
+	speedUpdate();
+	//update other positions and delete old ones
+	if (in.size()>0)
+		positionUpdate(in[0].lastupdate);
+	}
+
+	vector<int> getColGr(int colour)
+		{
+		vector<int> out;
+		for (int i=0;i<List.size();i++)
+			if (List[i].color==colour && List[i].grip!=Point(-1,-1))
+				out.push_back(i);
+
+		return(out);
+		}
+
+	void getPosAtTime (int idx, int time_millisec, double &x, double &y, double&alpha)
+	{
+		Point2f estimate;
+		if (time_millisec==0)
+			estimate=List[idx].grip;
+		else
+			estimate=estimatePos(idx, time_millisec+clock(), List[idx].grip);
+
+		double pixeltomm = 1.909;
+
+		x=estimate.x*1.909+1004.5;
+		y=-estimate.y*1.909-367.5;
+		alpha=List[idx].angle;
+		//if(List[idx].griprot) alpha=alpha-90;
+		//alpha=alpha*toRad;
+	}
+
+private:
+	double getDistLine(Point ref, Point pt)
+	{
+		double l2=100.0;
+		Point2f ref2;
+		ref2.x=ref.x+l2*sin(spdangle*toRad);
+		ref2.y=ref.y+l2*cos(spdangle*toRad);
+
+		double t = ((pt.x - ref.x) * (ref2.x - ref.x) + (pt.y - ref.y) * (ref2.y - ref.y)) / l2;
+		double xx = ref.x + t * (ref2.x - ref.x);
+		double yy = ref.y + t * (ref.y - ref.y);
+
+		return sqrt((pt.x-xx)*(pt.x-xx)+(pt.y-yy)*(pt.y-yy));
+	}
+
+	Point2f estimatePos(int idx, int time, Point2f p)
+	{
+		double dist=speed*(time-List[idx].lastupdate);
+		p.x=p.x+dist*sin(spdangle*toRad);
+		p.y=p.y+dist*cos(spdangle*toRad);
+		return(p);
+	}
+
+	void speedUpdate()
+	{
+		if (spd.size()>0)
+		{
+
+			double sum = std::accumulate(spd.begin(), spd.end(), 0.0);
+			double mean = sum / spd.size();
+
+			double sq_sum = std::inner_product(spd.begin(), spd.end(), spd.begin(), 0.0);
+			double stdev = std::sqrt(sq_sum / spd.size() - mean * mean);
+
+			for (int i=spd.size()-1; i>=0; i--)
+				if (spd[i]>mean+stdev+1)
+					spd.erase(spd.begin()+i);
+
+			double sum1 = std::accumulate(spd.begin(), spd.end(), 0.0);
+			double mean1 = sum / spd.size();
+
+			speed=mean1;
+
+			spd.clear();
+		}
+	}
+
+	void positionUpdate(int newtime)
+	{
+	for (int i=List.size()-1; i>=0;i--)
+		if (List[i].lastupdate!=newtime)
+		{
+			Point p = estimatePos(i, newtime, List[i].center);
+			if (p.x< -1800)
+				List.erase(List.begin()+i);
+			else
+			{
+				List[i].center=p;
+				if (List[i].grip!=Point(-1,-1))
+					List[i].grip=estimatePos(i, newtime, List[i].grip);
+				List[i].lastupdate=newtime;
+
+			}
+		}
+	}
+};
+
+
+double angle( Point pt1, Point pt2, Point pt0 );
+void findSquares( const vector<vector<Point> > contours , vector<Brick > & Bricks, int color, int timestamp);
+vector<vector<Point> > analyseLump(vector<Point> in, int area, bool first);
+void sortCorners(std::vector<cv::Point>& corners);
+void imageAnalysis(Mat img, BricksList & theList);
+
+
+
+int main(int argc, char **argv) {
+
+ros::init(argc, argv, "vision");
+ros::NodeHandle n;
+ros::NodeHandle nh("~");
+//get image
+Mat img;
+
+//The bricks list
+BricksList theList;
+
+//read from file
+const char* imgname="/home/rsd/groovy_workspace/FroboMind-Fuerte/Vision/src/Snapshot_20130410_11.JPG";
+img = imread(imgname);
+
+VideoCapture capture(0);
+
+ros::Rate loop_rate(1000);
+
+//while(1)
+	{/*
+
+	if(!capture.isOpened())  {
+		 std::cout<<"ERROR: capture is NULL \n";
+		 std::cin.get();
+		 return -1;
+	   }
+	capture>>img; // */
+
+	//analyze image
+	imageAnalysis(img, theList);
+
+	//output some results:
+	vector<int> Lr;
+	double x,y,rot;
+	std::cout<<"\nRed:\n";
+	Lr=theList.getColGr(Red);
+	for (int i=0;i<Lr.size(); i++)
+	{
+		theList.getPosAtTime(Lr[i],0,x,y,rot);
+		std::cout<<"x:"<<x<<" y:"<<y<<" rot:"<<rot<<std::endl;
+	}
+
+	std::cout<<"Yellow:\n";
+	Lr=theList.getColGr(Yellow);
+	for (int i=0;i<Lr.size(); i++)
+	{
+		theList.getPosAtTime(Lr[i],0,x,y,rot);
+		std::cout<<"x:"<<x<<" y:"<<y<<" rot:"<<rot<<std::endl;
+	}
+
+	std::cout<<"Blue:\n";
+	Lr=theList.getColGr(Blue);
+	for (int i=0;i<Lr.size(); i++)
+	{
+		theList.getPosAtTime(Lr[i],0,x,y,rot);
+		std::cout<<"x:"<<x<<" y:"<<y<<" rot:"<<rot<<std::endl;
+	}
+	std::cout<<std::endl;
+
+	imshow("he", img);
+
+	if (waitKey(1)>=0) return 0;
+
+	loop_rate.sleep();
+	}
+
+
+waitKey();
+return 0;
+}
+
+double angle( Point pt1, Point pt2, Point pt0 )
+{
+    double dx1 = pt1.x - pt0.x;
+    double dy1 = pt1.y - pt0.y;
+    double dx2 = pt2.x - pt0.x;
+    double dy2 = pt2.y - pt0.y;
+    return (dx1*dx2 + dy1*dy2)/sqrt((dx1*dx1 + dy1*dy1)*(dx2*dx2 + dy2*dy2) + 1e-10);
+}
+
+void findSquares( const vector<vector<Point> > contours , vector<Brick > & Bricks, int color, int timestamp)
+{	std::cout<<"Color "<<color<<std::endl;
+	int area;
+	switch (color)
+		{
+	case Blue :
+		{area=1139; break;}
+	case Red :
+		{area=2400; break;}
+	case Yellow :
+		{area=3417; break;}
+		}
+
+    vector<Point2f> approx;
+    int count=0;
+    // test each contour
+    for( size_t i = 0; i < contours.size(); i++ )
+	{double something=fabs(contourArea(Mat(contours[i])));
+   if (something > 500)	
+    {std::cout<<something<<";";
+    	RotatedRect rect = minAreaRect(Mat(contours[i]));
+        Point2f pts[4];
+    	rect.points(pts);
+    	approx.clear();
+    	for ( size_t j=0;j<4;j++)
+    	{
+    		approx.push_back(pts[j]);
+    		}
+    	int dif=abs(fabs(contourArea(Mat(approx)))-area);
+    	std::cout<<dif*100/area<<std::endl;
+    	int tol=25;
+    		if (tol>dif*100/area)
+    		{std::cout<<"trigd";
+    		if (rect.center.x>border && rect.center.x<border2)
+    			Bricks.push_back(Brick(rect,color,timestamp));
+    		}
+    		else if(area<fabs(contourArea(Mat(approx))) && count<10)
+    		{   //counter to prevent the program from freezing if color segmentation goes wrong
+    			count++;
+    			vector<vector<Point> > res = analyseLump(contours[i],area,true);
+    			//std::cout<<res.size()<<std::endl;
+    			if (res.size()>0)
+    				{
+    					for (i=0;i<res.size();i++)
+						{
+							RotatedRect rect1 = minAreaRect(Mat(res[i]));
+							//std::cout<<"big yellow one: ";
+						if (rect1.center.x>border && rect1.center.x<border2)
+							Bricks.push_back(Brick(rect1,color,timestamp));
+						}
+    				}
+    		}
+     	 }
+      }
+
+}
+
+
+vector<vector<Point> > analyseLump(vector<Point> in, int area, bool first)
+		{
+	vector<Point> approx;
+	if (first)
+     approxPolyDP(Mat(in), approx,/* arcLength(Mat(in), true)*0.01*/4, true);
+	else
+		approx=in;
+	vector<vector<Point> > out;
+
+	if (approx.size()>3 && approx.size()<=24)
+		for (int i=0; i<approx.size(); i++)
+			for (int j=i+1; j<approx.size(); j++)
+				for (int k=j+1; k<approx.size(); k++)
+					for (int p=k+1; p<approx.size(); p++)
+				{
+						vector<Point> line;
+						line.push_back(approx[i]);
+						line.push_back(approx[j]);
+						line.push_back(approx[k]);
+						line.push_back(approx[p]);
+						sortCorners(line);
+					 int dif=abs(fabs(contourArea(Mat(line)))-area);
+				    // std::cout<<dif*100/area<<std::endl;
+					int tol=50;
+					if (tol>dif*100/area  && isContourConvex(Mat(line)))
+					{
+					    double maxCosine = 0;
+
+						for( int q = 2; q < 5; q++ )
+						{
+							// find the maximum cosine of the angle between joint edges
+							double cosine = fabs(angle(line[q%4], line[q-2], line[q-1]));
+							maxCosine = MAX(maxCosine, cosine);
+
+
+						}
+						//std::cout<<maxCosine<<std::endl;
+						if( maxCosine < 0.1 )
+							{
+							approx.erase(approx.begin()+p);
+							approx.erase(approx.begin()+k);
+							approx.erase(approx.begin()+j);
+							approx.erase(approx.begin()+i);
+							out=analyseLump(approx, area,false);
+							if (fabs(contourArea(line))>100)
+							out.push_back(line);
+							return(out);
+							}
+					}
+				}
+	return(out);
+		}
+
+void sortCorners(std::vector<cv::Point>& corners)
+{
+	std::vector<cv::Point> top, bot;
+	Point center=Point(0,0);
+
+	int arr1[4];
+
+	for (int i=0;i<4;i++)
+		{
+		 arr1[i]=corners[i].y;}
+
+	std::sort(arr1, arr1+4);
+
+	center.y=(arr1[1]+arr1[2])/2;
+
+
+    for (int i = 0; i < corners.size(); i++)
+    {
+        if (corners[i].y < center.y)
+            if (top.size()<2)
+            	top.push_back(corners[i]);
+            else
+            	bot.push_back(corners[i]);
+        else
+        	if (bot.size()<2)
+        		bot.push_back(corners[i]);
+        	else
+        		top.push_back(corners[i]);
+    }
+
+    cv::Point tl = top[0].x > top[1].x ? top[1] : top[0];
+    cv::Point tr = top[0].x > top[1].x ? top[0] : top[1];
+    cv::Point bl = bot[0].x > bot[1].x ? bot[1] : bot[0];
+    cv::Point br = bot[0].x > bot[1].x ? bot[0] : bot[1];
+
+    corners.clear();
+    corners.push_back(tl);
+    corners.push_back(tr);
+    corners.push_back(br);
+    corners.push_back(bl);
+}
+
+void imageAnalysis(Mat img, BricksList & theList)
+{
+//start clock
+int start=clock();
+
+//maximum distance
+double dm=20;
+double DM=dm*dm;
+
+//pointer to row
+ uchar* p; uchar* qR; uchar* qY; uchar*qB;
+ double DistR, DistY, DistB;
+
+ //red
+double avgR[3]={130,123,233};
+double varR[3]={60,8,8};
+//yellow
+double avgY[3]={49.3,254.6,254.8};
+double varY[3]={24,2,2};
+//blue
+double avgB[3]={251.5,234.2,144};
+double varB[3]={45,8,8};
+
+
+int timestamp=clock();
+
+Mat rezR=Mat(img.rows, img.cols, CV_8UC1,Scalar(0));
+Mat rezY=Mat(img.rows, img.cols, CV_8UC1,Scalar(0));
+Mat rezB=Mat(img.rows, img.cols, CV_8UC1,Scalar(0));
+
+for(int i = 0; i < img.rows; ++i)
+{
+	p = img.ptr<uchar>(i);
+	qB = rezB.ptr<uchar>(i);
+	qY = rezY.ptr<uchar>(i);
+	qR = rezR.ptr<uchar>(i);
+
+	for (int j = 0; j < img.cols; ++j)
+	{   DistR=0.0;
+	    DistY=0.0;
+	    DistB=0.0;
+		for (int k=0; k<3;k++)
+			{DistR=DistR+pow(avgR[k]-p[j+j+j+k],2)/varR[k];
+			DistY=DistY+pow(avgY[k]-p[j+j+j+k],2)/varY[k];
+			DistB=DistB+pow(avgB[k]-p[j+j+j+k],2)/varB[k];}
+
+		if (DistR<DM)
+		{	//if distance is larger, set color to black
+			qR[j]=255;
+		}
+
+	 	if (DistY<DM)
+		{	//if distance is larger, set color to black
+			qY[j]=255;
+		}
+
+		if (DistB<DM)
+		{	//if distance is larger, set color to black
+			qB[j]=255;
+		}
+
+	}
+}
+std::cout<<"Segmentation: "<<clock()-start<<std::endl;
+
+//show results
+/*
+imshow("red",rezR);
+imshow("yellow",rezY);
+imshow("blue",rezB);
+//*/
+start=clock();
+
+vector<vector<Point> > contours;
+vector<Brick >  squares;
+vector<Vec4i> hierarchy;
+
+
+ /// Find contours
+ findContours( rezR, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+  for( int i = 0; i< contours.size(); i++ )
+       drawContours( img, contours, i, Scalar(255,0,255), 2, 8, hierarchy, 0, Point() );
+     
+ findSquares(contours , squares, Red, timestamp);
+ findContours( rezY, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+  for( int i = 0; i< contours.size(); i++ )
+       drawContours( img, contours, i, Scalar(255,0,255), 2, 8, hierarchy, 0, Point() );
+ findSquares(contours , squares, Yellow, timestamp);
+ findContours( rezB, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE, Point(0, 0) );
+  for( int i = 0; i< contours.size(); i++ )
+       drawContours( img, contours, i, Scalar(255,0,255), 2, 8, hierarchy, 0, Point() );
+ findSquares(contours , squares, Blue, timestamp);
+
+
+ std::cout<<"Contour: "<<clock()-start;
+ /// Draw contours
+ for( int i = 0; i< squares.size(); i++ )
+    {
+      squares[i].drawBrick(img);
+      squares[i].checkGrip(rezB,rezY,rezR,img);
+    }
+theList.addToList(squares);
+
+}
+
+
+

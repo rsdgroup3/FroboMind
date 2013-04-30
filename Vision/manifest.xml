@@ -1,0 +1,18 @@
+<package>
+  <description brief="Vision">
+
+     RSD-Vision
+
+  </description>
+  <author>Thomas Iversen</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <depend package="roscpp"/>
+  <depend package="fmMsgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="sensor_msgs"/>
+  <depend package="std_msgs"/>
+
+</package>
+
+

@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/bosch-ros-pkg/!svn/ver/938/trunk/stacks/bosch_drivers/gumstix_memread_bma180/msg
+END
+bma180meas.msg
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svnroot/bosch-ros-pkg/!svn/ver/938/trunk/stacks/bosch_drivers/gumstix_memread_bma180/msg/bma180meas.msg
+END

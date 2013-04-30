@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/bosch-ros-pkg/!svn/ver/1375/trunk/stacks/bosch_drivers/bmp085/msg
+END
+bmp085_measurement.msg
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/bosch-ros-pkg/!svn/ver/1375/trunk/stacks/bosch_drivers/bmp085/msg/bmp085_measurement.msg
+END

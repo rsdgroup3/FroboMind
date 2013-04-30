@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/bosch-ros-pkg/!svn/ver/1265/trunk/stacks/bosch_drivers/bma180
+END
+manifest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/bosch-ros-pkg/!svn/ver/1264/trunk/stacks/bosch_drivers/bma180/manifest.xml
+END
+mainpage.dox
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/bosch-ros-pkg/!svn/ver/129/trunk/stacks/bosch_drivers/bma180/mainpage.dox
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/bosch-ros-pkg/!svn/ver/1264/trunk/stacks/bosch_drivers/bma180/CMakeLists.txt
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/bosch-ros-pkg/!svn/ver/129/trunk/stacks/bosch_drivers/bma180/Makefile
+END

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/bosch-ros-pkg/!svn/ver/115/trunk/stacks/bosch_drivers/photo/src/photo_node
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/bosch-ros-pkg/!svn/ver/115/trunk/stacks/bosch_drivers/photo/src/photo_node/CMakeLists.txt
+END
+photo_node.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/bosch-ros-pkg/!svn/ver/115/trunk/stacks/bosch_drivers/photo/src/photo_node/photo_node.cpp
+END

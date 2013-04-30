@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/bosch-ros-pkg/!svn/ver/115/trunk/stacks/bosch_drivers/photo/include/photo
+END
+photo.h
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/bosch-ros-pkg/!svn/ver/115/trunk/stacks/bosch_drivers/photo/include/photo/photo.h
+END
+photo_image.h
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svnroot/bosch-ros-pkg/!svn/ver/115/trunk/stacks/bosch_drivers/photo/include/photo/photo_image.h
+END

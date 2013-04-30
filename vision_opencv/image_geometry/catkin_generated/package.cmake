@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "image_geometry")
+set(image_geometry_MAINTAINER "Vincent Rabaud <vrabaud@willowgarage.com>")
+set(image_geometry_DEPRECATED "")
+set(image_geometry_VERSION "1.10.6")
+set(image_geometry_BUILD_DEPENDS "opencv2" "sensor_msgs")
+set(image_geometry_RUN_DEPENDS "opencv2" "sensor_msgs")
+set(image_geometry_BUILDTOOL_DEPENDS "catkin")

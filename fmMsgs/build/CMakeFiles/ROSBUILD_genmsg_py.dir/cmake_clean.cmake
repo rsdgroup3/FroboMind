@@ -5,6 +5,7 @@ FILE(REMOVE_RECURSE
   "../src/fmMsgs/msg/__init__.py"
   "../src/fmMsgs/msg/_rtq.py"
   "../src/fmMsgs/msg/_engine_rpm.py"
+  "../src/fmMsgs/msg/_xyz_r_t.py"
   "../src/fmMsgs/msg/_adc.py"
   "../src/fmMsgs/msg/_gpgga.py"
   "../src/fmMsgs/msg/_accelerometer.py"
@@ -14,6 +15,7 @@ FILE(REMOVE_RECURSE
   "../src/fmMsgs/msg/_steering_angle_cmd.py"
   "../src/fmMsgs/msg/_magnetometer.py"
   "../src/fmMsgs/msg/_gyroscope.py"
+  "../src/fmMsgs/msg/_positions.py"
   "../src/fmMsgs/msg/_row.py"
   "../src/fmMsgs/msg/_gps_state.py"
   "../src/fmMsgs/msg/_rtq_command.py"
@@ -21,6 +23,7 @@ FILE(REMOVE_RECURSE
   "../src/fmMsgs/msg/_rtq_lamp_command.py"
   "../src/fmMsgs/msg/_encoder.py"
   "../src/fmMsgs/msg/_motor_status.py"
+  "../src/fmMsgs/msg/_joint_conf.py"
   "../src/fmMsgs/msg/_can.py"
 )
 
